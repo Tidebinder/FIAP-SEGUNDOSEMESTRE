@@ -1,4 +1,3 @@
-import math
 # Exercicio 1
 numeros_inteiros = (15,24,32,47,120,1000,203,102,10,25,2,1,5,6,69)
 
@@ -32,20 +31,34 @@ def desvioPadrao(valores:tuple) -> int:
     
     media = media_aritmedica(valores)
     
-    dps = []
+    desvios = []
     
     for valor in valores:
 
-        varianca = (valor - media)**2
-
-        print(varianca)
-
-        dps.append(varianca)
-
-    dp = math.sqrt(sum(dps)/len(valores))    
+        if media > valor:
+            desvio = media - valor
+        else:
+            desvio = valor - media
+            
+        desvios.append(desvio)
         
-    return dp
+    quadrados = [desvio**2 for desvio in desvios]
+    
+    varianca = sum(quadrados)/5
+    
+    desvioPadrao = varianca**0.5
+    
+    print(f"Os desvios foram: {','.join(str(desvio) for desvio in desvios)}")    
+    print(f"A variança foi de: {varianca}")   
+    print(f"O desvio padrão foi de {desvioPadrao}")
+    
+    return desvioPadrao
 
-atletas = (1.80,1.95,1.98,1.88,2.04)
+notas = (1.80,1.83,1.60,1.75)
 
-print(desvioPadrao(atletas))
+desvioPadrao(notas)
+
+
+
+
+
